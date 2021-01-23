@@ -48,7 +48,7 @@ UART_HandleTypeDef hlpuart1;
 FDCAN_RxHeaderTypeDef RxHeader;
 uint8_t RxData[8];
 FDCAN_TxHeaderTypeDef TxHeader;
-uint8_t TxData[8];
+uint8_t TxData[] = "Hi There";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -103,8 +103,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  TxData[0] = 0xFF;
-	  	  TxData[1] = 0xFF;
 
 	  	  /* Start the Transmission process */
 	  	  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &TxHeader, TxData) == HAL_OK)
