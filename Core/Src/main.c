@@ -48,7 +48,7 @@ UART_HandleTypeDef hlpuart1;
 FDCAN_RxHeaderTypeDef RxHeader;
 uint8_t RxData[8];
 FDCAN_TxHeaderTypeDef TxHeader;
-uint8_t TxData[] = "Hi There";
+uint8_t TxData[] = "This is a 64 character long string. I really hope it works, pls!";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -195,7 +195,7 @@ static void MX_FDCAN1_Init(void)
   /* USER CODE END FDCAN1_Init 1 */
   hfdcan1.Instance = FDCAN1;
   hfdcan1.Init.ClockDivider = FDCAN_CLOCK_DIV1;
-  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_BRS;
   hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
@@ -206,8 +206,8 @@ static void MX_FDCAN1_Init(void)
   hfdcan1.Init.NominalTimeSeg2 = 16;
   hfdcan1.Init.DataPrescaler = 1;
   hfdcan1.Init.DataSyncJumpWidth = 1;
-  hfdcan1.Init.DataTimeSeg1 = 5;
-  hfdcan1.Init.DataTimeSeg2 = 4;
+  hfdcan1.Init.DataTimeSeg1 = 63;
+  hfdcan1.Init.DataTimeSeg2 = 16;
   hfdcan1.Init.StdFiltersNbr = 0;
   hfdcan1.Init.ExtFiltersNbr = 0;
   hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
@@ -334,10 +334,10 @@ static void FDCAN_Config(void){
 	  TxHeader.Identifier = 0x321;
 	  TxHeader.IdType = FDCAN_STANDARD_ID;
 	  TxHeader.TxFrameType = FDCAN_DATA_FRAME;
-	  TxHeader.DataLength = FDCAN_DLC_BYTES_8;
+	  TxHeader.DataLength = FDCAN_DLC_BYTES_64;
 	  TxHeader.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
-	  TxHeader.BitRateSwitch = FDCAN_BRS_OFF;
-	  TxHeader.FDFormat = FDCAN_CLASSIC_CAN;
+	  TxHeader.BitRateSwitch = FDCAN_BRS_ON;
+	  TxHeader.FDFormat = FDCAN_FD_CAN;
 	  TxHeader.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	  TxHeader.MessageMarker = 0;
 
