@@ -54,8 +54,8 @@ all: main-build
 main-build: G4.elf secondary-outputs
 
 # Tool invocations
-G4.elf: $(OBJS) $(USER_OBJS) C:\Users\Adam\STM32CubeIDE\workspace_1.5.1\G4\STM32G474RETX_FLASH.ld
-	arm-none-eabi-gcc -o "G4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Adam\STM32CubeIDE\workspace_1.5.1\G4\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="G4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+G4.elf: $(OBJS) $(USER_OBJS) C:\Users\adamf\STM32CubeIDE\workspace_1.5.1\G4\STM32G474RETX_FLASH.ld
+	arm-none-eabi-gcc -o "G4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\adamf\STM32CubeIDE\workspace_1.5.1\G4\STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="G4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
